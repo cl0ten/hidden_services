@@ -78,19 +78,33 @@ cat /var/lib/anon/hidden_service/hostname
 ```
 
 If you have Python 3 installed, you can use the following command to start a python http server.
-- (Tip: Use a separate session to keep the other terminal free for further configuration or testing.)
+
+First cd in to a directory that you want to start the http.server in.
+```
+mkdir webdir
+cd webdir
+echo -e "hello world" >> ./test.html
+```
 
 ```bash
 python3 -m http.server --bind 127.0.0.1 5000
 ```
+Tip: Use a separate session to keep the other terminal free for further configuration or testing.
+
 
 Anyone can now visit the address on the Anyone Network to use your website.
 
 ## Test Connectivity
 If you want to test your connectivity through socks proxy on localhost, you can `curl` the hostname using `--socks-hostname`
 
+Curl the test.file
 ```bash
-curl --socks5-hostname 127.0.0.1:9050 http://<hostname>:80
+curl --socks5-hostname 127.0.0.1:9050 http://<hostname>:80/test.html
+```
+
+Show document info only.
+```bash
+curl -I --socks5-hostname 127.0.0.1:9050 http://<hostname>:80
 ```
 
 ---
