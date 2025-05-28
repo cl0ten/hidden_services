@@ -77,25 +77,21 @@ Upon restarting anon with the hidden service configuration, a new `.anon` addres
 cat /var/lib/anon/hidden_service/hostname
 ```
 
-If you've changed the `HiddenServiceDir` setting in the `anonrc` file, you can find the hostname in `<HiddenServiceDir>/hostname` file.
+If you have Python 3 installed, you can use the following command to start a python http server.
+- (Tip: Use a separate session to keep the other terminal free for further configuration or testing.)
 
 ```bash
-cat /var/lib/anon/hidden_service/hostname
+python3 -m http.server --bind 127.0.0.1 5000
 ```
 
-If you have NodeJS installed, you can use the following command to start the server.
+Anyone can now visit the address on the Anyone Network to use your website.
+
+## Test Connectivity
+If you want to test your connectivity through socks proxy on localhost, you can `curl` the hostname using `--socks-hostname`
 
 ```bash
-npx serve -l 80
+curl --socks5-hostname 127.0.0.1:9050 http://<hostname>:80
 ```
-
-Alternatively, if you have Python 3 installed, you can use the following command to start a python http server.
-
-```bash
-python3 -m http.server --bind 127.0.0.1 80
-```
-
-Anyone can now visit this address on the Anyone Network to use your website.
 
 ---
 # Generating a vanity .anon address with [`mkp224o`](https://github.com/cl0ten/mkp224o)
